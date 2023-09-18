@@ -13,7 +13,7 @@ outside_rows = math.floor(height/2)
 for n in range(0,outside_rows):
     tile_sections = 2 * n + 1
     background_length = int((length - tile_sections * 3) / 2)
-    print("-" * background_length, "+|+" * tile_sections, "-" * background_length)
+    print("-" * background_length, "+|+" * tile_sections, "-" * background_length, sep='')
 
 # you can print your named row here
 print("")
@@ -22,5 +22,5 @@ print("")
 for n in range(outside_rows-1, -1, -1):
     tile_sections = 2 * n + 1
     background_length = int((length - tile_sections * 3) / 2)
-    print("-" * background_length, "+|+" * tile_sections, "-" * background_length)
+    print("-" * background_length, "+|+" * tile_sections, "-" * background_length, sep='')
 
