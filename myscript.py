@@ -52,3 +52,8 @@ your_list = [1,2,3,
 print(my_list)
 print(last)
 print(your_list)
+
+
+from collections import abc
+
+print(issubclass(list, abc.Sequence))
