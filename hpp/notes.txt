@@ -1,0 +1,2 @@
+Profiling with cmdline (cProfile builtin):
+python -m cProfile -s cumulative .\julia_1.py

@@ -1,3 +1,5 @@
+# from terminal:  python -m timeit -n 5 -r 1 -s "import julia_1" "julia_1.calc_pure_python(1000, 300)"
+
 import time
 from functools import wraps
 
