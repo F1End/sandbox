@@ -60,3 +60,69 @@ from collections import abc
 my_dict = {}
 print(isinstance(my_dict, abc.Mapping))
 print(isinstance(my_dict, abc.MutableMapping))
+
+# testing dict.setdefault
+import random
+rand_list = [random.randint(1, 500) for i in range(1, 1000)]
+ordered_dict = {}
+i = 0
+
+for number in rand_list:
+    ordered_dict.setdefault(number, []).append(i)
+    i += 1
+    
+print(len(ordered_dict))
+print(ordered_dict)
+
+# testing collections.defaultdict
+import collections
+import random
+
+rand_list = [random.randint(1, 500) for i in range(1, 1000)]
+default_ordered_dict = collections.defaultdict(list) # setting list constructor as default_factory
+i = 0
+
+for number in rand_list:
+    default_ordered_dict[number].append(i)
+    i += 1
+
+print(len(default_ordered_dict))
+print(default_ordered_dict)
+
+
+# testing __missing__ method page 93 (page 123 in pdf)
+"""A better way to create a user-defined mapping type is to subclass
+collections.UserDict instead of dict (as we will do in
+Example 3-9). Here we subclass dict just to show that __miss
+ing__ is supported by the built-in dict.__getitem__ method."""
+
+class StrKeyDict0(dict):
+
+    def __missing__(self, key):
+        if isinstance(key, str):
+            raise KeyError(key)
+        return self[str(key)]
+
+    def get(self, key, default=None):
+        try:
+            return self[key]
+        except KeyError:
+            return default
+
+    def __contains__(self, key):
+        return key in self.keys() or str(key) in self.keys()
+
+d = StrKeyDict0([('2', 'two'), ('4', 'four'), ('5', 'blah')])
+print(d['2'])
+print(d['4'])
+print(d['5'])
+# print(d['6'])
+# print(d[6])
+print(d[2])
+print(d.get(2))
+print(d.get("2"))
+print(d.get(1))
+print(d.get(1, "NA"))
+
+print(2 in d)
+print(6 in d)

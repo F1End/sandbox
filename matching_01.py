@@ -6,7 +6,7 @@ class InvalidCommand(Exception):
         print(message)
 
 def handle_command(message):
-    if  len(message) == 1 and type(message[0]) is str:
+    if len(message) == 1 and type(message[0]) is str:
         message = [str(x) for x in message[0]]
     match message:
         case ['BEEPER', freqeuncy, times]:
